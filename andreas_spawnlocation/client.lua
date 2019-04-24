@@ -15,22 +15,33 @@ end
 
 RegisterNUICallback('park', function()
 	fade()
-	SetEntityCoords(GetPlayerPed(-1), Config.Park.x, Config.Park.y, Config.Park.z)
+	SetEntityCoords(GetPlayerPed(-1), 229.90312194824, -884.53228759766, 29.492115020752)
 end)
 
 RegisterNUICallback('sjukhus', function()
 	fade()
-	SetEntityCoords(GetPlayerPed(-1), Config.Hospital.x, Config.Hospital.y, Config.Hospital.z)
+	SetEntityCoords(GetPlayerPed(-1), 313.69659423828, -595.92419433594, 42.291835784912)
 end)
 
 RegisterNUICallback('motell', function()
 	fade()
-	SetEntityCoords(GetPlayerPed(-1), Config.Motell.x, Config.Motell.y, Config.Motell.z)
+	SetEntityCoords(GetPlayerPed(-1), 151.38, -1007.95, -101.0)
 end)
 
 RegisterNUICallback('senaste', function()
 	fade()
-	TriggerEvent('andreas_spawnlocation:spawn')
+
+	while not ESX.PlayerLoaded do
+		Citizen.Wait(1)
+	end
+
+	local playerPed = PlayerPedId()
+
+	-- Restore position
+	if ESX.PlayerData.lastPosition ~= nil then
+		SetEntityCoords(playerPed, ESX.PlayerData.lastPosition.x, ESX.PlayerData.lastPosition.y, ESX.PlayerData.lastPosition.z)
+	end
+
 end)
 
 RegisterNUICallback('NUIFocusOff', function()
@@ -43,15 +54,4 @@ RegisterNetEvent('andreas_spawnlocation:setNui')
 AddEventHandler('andreas_spawnlocation:setNui', function()
 	SetNuiFocus(true, true)
 	SendNUIMessage({type = 'openGeneral'})
-end)
-
--- Menu Controls
-Citizen.CreateThread(function()
-	while true do
-		Citizen.Wait(0)
-		if IsControlJustReleased(0, 163) then
-			SetNuiFocus(true, true)
-			SendNUIMessage({type = 'openGeneral'})
-		end
-	end
 end)
