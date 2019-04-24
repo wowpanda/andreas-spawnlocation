@@ -30,7 +30,18 @@ end)
 
 RegisterNUICallback('senaste', function()
 	fade()
-	TriggerEvent('andreas_spawnlocation:spawn')
+
+	while not ESX.PlayerLoaded do
+		Citizen.Wait(1)
+	end
+
+	local playerPed = PlayerPedId()
+
+	-- Restore position
+	if ESX.PlayerData.lastPosition ~= nil then
+		SetEntityCoords(playerPed, ESX.PlayerData.lastPosition.x, ESX.PlayerData.lastPosition.y, ESX.PlayerData.lastPosition.z)
+	end
+
 end)
 
 RegisterNUICallback('NUIFocusOff', function()
@@ -43,15 +54,4 @@ RegisterNetEvent('andreas_spawnlocation:setNui')
 AddEventHandler('andreas_spawnlocation:setNui', function()
 	SetNuiFocus(true, true)
 	SendNUIMessage({type = 'openGeneral'})
-end)
-
--- Menu Controls
-Citizen.CreateThread(function()
-	while true do
-		Citizen.Wait(0)
-		if IsControlJustReleased(0, 163) then
-			SetNuiFocus(true, true)
-			SendNUIMessage({type = 'openGeneral'})
-		end
-	end
 end)
