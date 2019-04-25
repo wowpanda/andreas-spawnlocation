@@ -1,4 +1,5 @@
 ESX = nil
+local PlayerData = {}
 
 Citizen.CreateThread(function()
 	while ESX == nil do
