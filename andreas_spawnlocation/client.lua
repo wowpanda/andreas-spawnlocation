@@ -15,17 +15,17 @@ end
 
 RegisterNUICallback('park', function()
 	fade()
-	SetEntityCoords(GetPlayerPed(-1), 229.90312194824, -884.53228759766, 29.492115020752)
+	SetEntityCoords(GetPlayerPed(-1), Config.Park.x, Config.Park.y, Config.Park.z)
 end)
 
 RegisterNUICallback('sjukhus', function()
 	fade()
-	SetEntityCoords(GetPlayerPed(-1), 313.69659423828, -595.92419433594, 42.291835784912)
+	SetEntityCoords(GetPlayerPed(-1), Config.Hospital.x, Config.Hospital.y, Config.Hospital.z)
 end)
 
 RegisterNUICallback('motell', function()
 	fade()
-	SetEntityCoords(GetPlayerPed(-1), 151.38, -1007.95, -101.0)
+	SetEntityCoords(GetPlayerPed(-1), Config.Motell.x, Config.Motell.y, Config.Motell.z
 end)
 
 RegisterNUICallback('senaste', function()
